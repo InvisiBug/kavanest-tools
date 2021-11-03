@@ -12,8 +12,6 @@ function start() {
       },
     ])
     .then((answers) => {
-      console.info("Answer:", answers.start);
-
       switch (answers.start) {
         case "API":
           shell.cd("../api");
@@ -55,8 +53,6 @@ function stop() {
       },
     ])
     .then((answers) => {
-      console.info("Answer:", answers.stop);
-
       switch (answers.stop) {
         case "API":
           shell.cd("../api");
@@ -81,7 +77,6 @@ function stop() {
         case "Mongo":
           shell.cd("docker/mongo");
           shell.exec("clear && docker compose down");
-          console.log("start mqtt stuff");
           break;
       }
     });
@@ -100,9 +95,7 @@ inquirer
     console.info("Answer:", answers.selection);
     if (answers.selection === "Start stuff") {
       start();
-      console.log("here");
     } else if (answers.selection === "Stop stuff") {
       stop();
-      console.log("here");
     }
   });
