@@ -1,0 +1,36 @@
+name: kavanest-mongo
+
+namespace: kavanest
+
+deployment:
+  - name: kavanest-mongo
+    image: mongo:bionic
+    ports:
+    - port: 27017
+    volumes:
+    - type: pvc
+      name: mongo-store
+      path: /data/db
+
+pvc:
+  - name: mongo-store
+    storage: 100Mi
+
+service:
+  loadBalancer:
+    - name: kavanest-mongo
+      selector: kavanest-mongo
+      port: 27017
+      containerPort: 27017
+
+#*  This ingress is harder than it looks,
+#*  need to figure out how to ingress a port other than 80
+# ingress:
+#   - name: mongo.kavanet.io
+#     selector: kavanest-mongo
+#     path: /
+#     port: 27017
+#     host: mongo.kavanet.io
+
+
+
