@@ -1,0 +1,24 @@
+name: kavanest-test-mongo
+
+namespace: kavanest-test
+
+deployment:
+  - name: kavanest-test-mongo
+    image: mongo:bionic
+    ports:
+    - port: 27017
+    volumes:
+    - type: pvc
+      name: mongo-store
+      path: /data/db
+
+pvc:
+  - name: mongo-store
+    storage: 100Mi
+
+service:
+  loadBalancer:
+    - name: kavanest-test-mongo
+      selector: kavanest-test-mongo
+      port: 27017
+      containerPort: 27017
