@@ -12,6 +12,12 @@ deployment:
       name: mongo-store
       path: /data/db
 
+  - name: kavanest-test-mqtt
+    image: eclipse-mosquitto:1.6
+    ports:
+    - port: 1883
+    - port: 9001
+
 pvc:
   - name: mongo-store
     storage: 100Mi
@@ -22,3 +28,8 @@ service:
       selector: kavanest-test-mongo
       port: 27017
       containerPort: 27017
+
+    - name: kavanest-test-mqtt
+      selector: kavanest-test-mqtt
+      port: 1883
+      containerPort: 1883
