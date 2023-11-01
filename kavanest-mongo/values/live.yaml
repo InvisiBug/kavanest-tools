@@ -22,7 +22,7 @@ pvc:
   - name: mongo-store
     storage: 100Mi
 
-ingress:
+ingress: # Dont think this is actually working, seems to rely a port forwarding rule in the router
   - name: mqtt.kavanet.io
     selector: kavanest-mqtt
     path: /
