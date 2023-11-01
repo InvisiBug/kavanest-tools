@@ -22,6 +22,13 @@ pvc:
   - name: mongo-store
     storage: 100Mi
 
+ingress:
+  - name: mqtt.kavanet.io
+    selector: kavanest-mqtt
+    path: /
+    port: 1883
+    host: mqtt.kavanet.io
+
 service:
   loadBalancer:
     - name: kavanest-mongo
