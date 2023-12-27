@@ -22,13 +22,6 @@ pvc:
   - name: mongo-store
     storage: 100Mi
 
-ingress: # Dont think this is actually working, seems to rely a port forwarding rule in the router
-  - name: mqtt.kavanet.io
-    selector: kavanest-mqtt
-    path: /
-    port: 1883
-    host: mqtt.kavanet.io
-
 service:
   loadBalancer:
     - name: kavanest-mongo
@@ -40,3 +33,10 @@ service:
       selector: kavanest-mqtt
       port: 1883
       containerPort: 1883
+
+# ingress: # Dont think this is actually working, seems to rely a port forwarding rule in the router
+#   - name: mqtt.kavanet.io
+#     selector: kavanest-mqtt
+#     path: /
+#     port: 1883
+#     host: mqtt.kavanet.io
